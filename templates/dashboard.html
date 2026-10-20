@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | DHOST AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="dashboard">
+        <h1>Welcome, {{ name }}.</h1>
+        <p>Record a short sentence to check the current speech emotion.</p>
+        <section class="speech-panel" aria-labelledby="speech-title">
+            <h2 id="speech-title">Speech emotion</h2>
+            <button id="record-button" type="button">Start recording</button>
+            <p id="recording-status" role="status">Microphone is ready.</p>
+            <div id="speech-result" hidden>
+                <strong id="emotion-label"></strong>
+                <span id="confidence-label"></span>
+            </div>
+        </section>
+        <a href="{{ url_for('logout') }}">Log out</a>
+    </main>
+    <script>
+        const recordButton = document.getElementById("record-button");
+        const status = document.getElementById("recording-status");
+        const result = document.getElementById("speech-result");
+        let recorder;
+        let chunks = [];
+
+        function encodeWav(buffer, sampleRate) {
+            const samples = buffer.getChannelData(0);
+            const output = new ArrayBuffer(44 + samples.length * 2);
+            const view = new DataView(output);
+            const text = (offset, value) => [...value].forEach((char, index) => view.setUint8(offset + index, char.charCodeAt(0)));
+            text(0, "RIFF"); view.setUint32(4, 36 + samples.length * 2, true); text(8, "WAVE");
+            text(12, "fmt "); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+            view.setUint16(22, 1, true); view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true); view.setUint16(34, 16, true); text(36, "data");
+            view.setUint32(40, samples.length * 2, true);
+            samples.forEach((sample, index) => view.setInt16(44 + index * 2, Math.max(-1, Math.min(1, sample)) * 32767, true));
+            return new Blob([output], { type: "audio/wav" });
+        }
+
+        recordButton.addEventListener("click", async () => {
+            if (recorder?.state === "recording") {
+                recorder.stop();
+                recordButton.disabled = true;
+                status.textContent = "Analyzing recording...";
+                return;
+            }
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const context = new AudioContext();
+                const source = context.createMediaStreamSource(stream);
+                const processor = context.createScriptProcessor(4096, 1, 1);
+                const buffers = [];
+                processor.onaudioprocess = event => buffers.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+                source.connect(processor); processor.connect(context.destination);
+                recorder = { state: "recording", stop() {
+                    recorder.state = "stopped"; source.disconnect(); processor.disconnect(); stream.getTracks().forEach(track => track.stop());
+                    const merged = new Float32Array(buffers.reduce((total, part) => total + part.length, 0));
+                    let offset = 0; buffers.forEach(part => { merged.set(part, offset); offset += part.length; });
+                    const audioBuffer = context.createBuffer(1, merged.length, context.sampleRate); audioBuffer.copyToChannel(merged, 0);
+                    sendRecording(encodeWav(audioBuffer, context.sampleRate));
+                }};
+                recordButton.textContent = "Stop recording"; status.textContent = "Listening..."; result.hidden = true;
+            } catch (error) { status.textContent = "Microphone access is required to record speech."; }
+        });
+
+        async function sendRecording(blob) {
+            const data = new FormData(); data.append("audio", blob, "speech.wav");
+            const response = await fetch("{{ url_for('analyze_speech') }}", { method: "POST", body: data });
+            const payload = await response.json(); recordButton.disabled = false; recordButton.textContent = "Start recording";
+            if (!response.ok) { status.textContent = payload.error; return; }
+            status.textContent = "Analysis complete."; document.getElementById("emotion-label").textContent = payload.emotion;
+            document.getElementById("confidence-label").textContent = `${Math.round(payload.confidence * 100)}% confidence`;
+            result.hidden = false;
+        }
+    </script>
+</body>
+</html>

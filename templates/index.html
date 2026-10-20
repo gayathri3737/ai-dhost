@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DHOST AI | Personalized Elderly Care</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <span>DHOST</span> AI
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-buttons">
+
+            <a href="{{ url_for('login') }}" class="login-btn">
+                Login
+            </a>
+
+            <a href="{{ url_for('signup') }}" class="signup-btn">
+                Get Started
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="tagline">
+                AI-POWERED ELDERLY CARE
+            </p>
+
+            <h1>
+                A Smarter Companion
+                <br>
+                for <span>Everyday Care.</span>
+            </h1>
+
+            <p class="hero-text">
+                DHOST AI is an intelligent elderly-care system
+                designed to understand emotions, learn daily
+                routines, provide reminders and help caregivers
+                stay connected with their loved ones.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{{ url_for('signup') }}"
+                   class="primary-btn">
+                    Get Started →
+                </a>
+
+                <a href="#features"
+                   class="secondary-btn">
+                    Explore Features
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI Companion Card -->
+
+        <div class="hero-visual">
+
+            <div class="care-card">
+
+                <div class="care-header">
+
+                    <span class="status-dot"></span>
+
+                    DHOST AI Active
+
+                </div>
+
+
+                <div class="elder-icon">
+                    👵
+                </div>
+
+
+                <h3>
+                    Hello! I'm here with you.
+                </h3>
+
+
+                <p>
+                    Your AI companion is monitoring
+                    your wellbeing.
+                </p>
+
+
+                <div class="emotion-box">
+
+                    <div>
+
+                        <small>
+                            Current Emotion
+                        </small>
+
+                        <strong>
+                            😊 Happy
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            Confidence
+                        </small>
+
+                        <strong>
+                            92%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features-section"
+             id="features">
+
+        <div class="section-heading">
+
+            <p class="tagline">
+                WHAT DHOST AI DOES
+            </p>
+
+            <h2>
+                Care that understands
+                <span>you.</span>
+            </h2>
+
+            <p>
+                DHOST AI combines artificial intelligence,
+                emotion recognition and personalized care
+                to support elderly people in their everyday lives.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+
+            <!-- Facial Emotion -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    😊
+                </div>
+
+                <h3>
+                    Facial Emotion Recognition
+                </h3>
+
+                <p>
+                    Detect emotional states from facial
+                    expressions using the camera.
+                </p>
+
+            </div>
+
+
+            <!-- Voice Emotion -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎙️
+                </div>
+
+                <h3>
+                    Voice Emotion Recognition
+                </h3>
+
+                <p>
+                    Analyze speech and voice patterns
+                    to understand emotional states.
+                </p>
+
+            </div>
+
+
+            <!-- Personalized AI -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Personalized AI
+                </h3>
+
+                <p>
+                    Learn routines and preferences to
+                    provide personalized assistance.
+                </p>
+
+            </div>
+
+
+            <!-- Medicine -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💊
+                </div>
+
+                <h3>
+                    Medicine Reminders
+                </h3>
+
+                <p>
+                    Help users remember important
+                    medications and daily activities.
+                </p>
+
+            </div>
+
+
+            <!-- Emergency -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Emergency Alerts
+                </h3>
+
+                <p>
+                    Notify caregivers or family members
+                    when an emergency is detected.
+                </p>
+
+            </div>
+
+
+            <!-- Caregiver -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    👨‍👩‍👧
+                </div>
+
+                <h3>
+                    Caregiver Connection
+                </h3>
+
+                <p>
+                    Keep family members and caregivers
+                    informed through a dedicated dashboard.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about-section"
+             id="about">
+
+        <div>
+
+            <p class="tagline">
+                ABOUT DHOST AI
+            </p>
+
+            <h2>
+                Technology with a
+                <span>human touch.</span>
+            </h2>
+
+            <p>
+                DHOST AI is designed to make elderly care
+                more connected, intelligent and personalized.
+                By combining multiple AI technologies, the
+                system can understand emotions, recognize
+                activities and assist with everyday needs.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="contact">
+
+        <div class="logo">
+            <span>DHOST</span> AI
+        </div>
+
+        <p>
+            Personalized Care for Elderly People
+        </p>
+
+        <p class="copyright">
+            © 2026 DHOST AI. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

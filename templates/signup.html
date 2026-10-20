@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | DHOST AI</title>
+
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='auth.css') }}">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- Left Side -->
+        <div class="auth-info">
+
+            <div class="logo">
+                <span>DHOST</span> AI
+            </div>
+
+            <div class="info-content">
+
+                <p class="tagline">
+                    PERSONALIZED ELDERLY CARE
+                </p>
+
+                <h1>
+                    Care that understands
+                    <span>you.</span>
+                </h1>
+
+                <p>
+                    Create your DHOST AI account and begin
+                    your personalized elderly-care journey.
+                </p>
+
+            </div>
+
+            <div class="info-footer">
+                © 2026 DHOST AI
+            </div>
+
+        </div>
+
+
+        <!-- Right Side -->
+        <div class="auth-form-section">
+
+            <div class="auth-form">
+
+                <div class="mobile-logo">
+
+                    <div class="logo">
+                        <span>DHOST</span> AI
+                    </div>
+
+                </div>
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p class="subtitle">
+                    Join DHOST AI and get started.
+                </p>
+
+
+                <form method="post" action="{{ url_for('signup') }}">
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+
+                        <label for="confirm_password">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            name="confirm_password"
+                            placeholder="Confirm your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Terms -->
+                    <div class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <label for="terms">
+                            I agree to the Terms &amp; Privacy Policy
+                        </label>
+
+                    </div>
+
+
+                    <!-- Button -->
+                    <button
+                        type="submit"
+                        class="signup-button">
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <p class="login-text">
+
+                    Already have an account?
+
+                    <a href="#">
+                        Login
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

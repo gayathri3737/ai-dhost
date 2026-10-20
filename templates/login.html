@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | DHOST AI</title>
+
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='auth.css') }}">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- Left Side -->
+        <div class="auth-info">
+
+            <div class="logo">
+                <span>DHOST</span> AI
+            </div>
+
+            <div class="info-content">
+
+                <p class="tagline">
+                    PERSONALIZED ELDERLY CARE
+                </p>
+
+                <h1>
+                    Welcome
+                    <span>back.</span>
+                </h1>
+
+                <p>
+                    Sign in to continue your personalized
+                    elderly-care journey with DHOST AI.
+                </p>
+
+            </div>
+
+            <div class="info-footer">
+                © 2026 DHOST AI
+            </div>
+
+        </div>
+
+
+        <!-- Right Side -->
+        <div class="auth-form-section">
+
+            <div class="auth-form">
+
+                <div class="mobile-logo">
+
+                    <div class="logo">
+                        <span>DHOST</span> AI
+                    </div>
+
+                </div>
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p class="subtitle">
+                    Login to your DHOST AI account.
+                </p>
+
+
+                <form method="post" action="{{ url_for('login') }}">
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Remember / Forgot -->
+                    <div class="login-options">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+                            Remember me
+                        </label>
+
+                        <a href="#">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="signup-button">
+                        Login
+                    </button>
+
+                </form>
+
+
+                <p class="login-text">
+
+                    Don't have an account?
+
+                    <a href="{{ url_for('signup') }}">
+                        Create Account
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
